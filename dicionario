@@ -1,0 +1,73 @@
+alunos = []
+
+notas = []
+
+id = 1
+
+maior = 0
+
+def cadastar_aluno():
+    global id
+    aluno1 = {
+        'id': id, 
+        'nome': str(input('Qual o nome do aluno: ')),
+        'idade': int(input('Qual a idade do aluno: ')),
+        'nota1': float(input('Qual a sua nota de matemática: ')),
+        'nota2': float(input('Qual a sua nota de ciências: ')),
+        'nota3': float(input('Qual a sua nota de história: '))
+    }
+    id +=1
+    alunos.append((aluno1['id'],aluno1['nome'],aluno1['idade']))
+    notas.append((aluno1['id'],aluno1['nota1'],aluno1['nota2'],aluno1['nota3']))
+
+def visualizar():
+    for aluno_atual in alunos:
+        print (f'''
+nome: {aluno_atual[1]}
+idade: {aluno_atual[2]}
+''')
+    
+        
+
+def media():
+    id = str(input('Digite o ID do aluno: '))
+    for id_atual in notas:
+        if id == id_atual[0]:
+            return (f'A média das notas do aluno é {(id_atual[1] + id_atual[2] + id_atual[3] ) / 3}')
+        else:
+            return ('Aluno não cadastrado')
+        
+def maior_media():
+    for nota_atual in notas:
+        media_atual = (nota_atual[1] + nota_atual[2] + nota_atual[3] ) / 3
+        if media_atual > maior:
+            maior = media_atual
+    for aluno_atual in alunos:
+        if nota_atual[id] == aluno_atual[id]:
+            return (f'O aluno com a maior media é {aluno_atual[nome]} com media {maior}')
+    
+    
+
+while True:
+    menu = int(input(''' Menu de acesso
+    1 - cadastrar aluno
+    2 - visualizar aluno
+    3 - média das notas
+    4 - aluno com maior média
+    0 - sair
+    '''))
+
+    match menu:
+        case 1:
+            cadastar_aluno()
+            print('aluno cadastrado')
+        case 2:
+            print(visualizar())
+        case 3:
+            print(media())
+        case 4:
+            print(maior_media())
+        case 0:
+            break
+        case _:
+            print('Digite uma opção valida')
