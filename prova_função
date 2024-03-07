@@ -1,0 +1,45 @@
+notas = []
+media = 0
+controle = 1
+def media_notas():
+    global controle
+    global media
+    n_notas = int(input('Quantas notas o aluno quer verificar: '))
+    for x in range(n_notas):    
+        n1 = float(input(f'Qual a {controle}° nota do aluno: '))
+        if n1 > 10 or n1 < 0:
+            return 'Digite um valor valido!'
+        controle += 1
+        notas.append(n1)
+    
+    for nota_atual in notas:
+        media = media + nota_atual
+    media = media / n_notas
+    return media
+
+def situacao_aluno():
+    global media
+    situacao = media
+    if situacao < 7:
+        return f'Você foi reprovado com média {situacao}'
+    elif situacao >= 7 and situacao < 10:
+        return f'Você foi aprovado com média {situacao}'
+    elif situacao == 10:
+        return 'Você foi aprovado com média 10!'
+
+while True:
+    menu = int(input('''O que gostaria de fazer
+                    1 - visualizar a média do aluno
+                    2 - Situação do aluno
+                    0 - sair
+                    '''))
+
+    match menu:
+        case 1:
+            print(f'Sua media é {media_notas()}')
+        case 2:
+            print(situacao_aluno())
+        case 0:
+            break
+        case _:
+            print('Digite uma opção valida')
