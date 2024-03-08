@@ -18,22 +18,23 @@ def cadastar_aluno():
     }
     id +=1
     alunos.append((aluno1['id'],aluno1['nome'],aluno1['idade']))
-    notas.append((aluno1['id'],aluno1['nota1'],aluno1['nota2'],aluno1['nota3']))
+    notas.append((aluno1['nota1'],aluno1['nota2'],aluno1['nota3']))
 
 def visualizar():
     for aluno_atual in alunos:
         print (f'''
-nome: {aluno_atual[1]}
-idade: {aluno_atual[2]}
-''')
+            nome: {aluno_atual[1]}
+            idade: {aluno_atual[2]}
+                ''')
     
         
 
 def media():
-    id = str(input('Digite o ID do aluno: '))
-    for id_atual in notas:
-        if id == id_atual[0]:
-            return (f'A média das notas do aluno é {(id_atual[1] + id_atual[2] + id_atual[3] ) / 3}')
+    id = int(input('Digite o ID do aluno: '))
+    for aluno_atual in alunos:
+        if id == aluno_atual[0]:
+            nota_atual = notas[id-1]
+            return f'A média do aluno {aluno_atual[1]} é {(nota_atual[0] + nota_atual[1] + nota_atual[2]) / 3}'
         else:
             return ('Aluno não cadastrado')
         
@@ -44,7 +45,7 @@ def maior_media():
             maior = media_atual
     for aluno_atual in alunos:
         if nota_atual[id] == aluno_atual[id]:
-            return (f'O aluno com a maior media é {aluno_atual[nome]} com media {maior}')
+            return (f'O aluno com a maior media é {aluno_atual[1]} com media {maior}')
     
     
 
