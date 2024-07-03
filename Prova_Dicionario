@@ -1,0 +1,45 @@
+alunos = []
+matricula = 1
+def adicionar_aluno():
+    global matricula
+    aluno = {
+        'nome': str(input('Qual o nome do aluno: ')),
+        'matricula': matricula
+    }
+    matricula = matricula + 1
+    alunos.append(aluno)
+    return f'O aluno, {aluno["nome"]}, foi cadastrado com sucesso!'
+
+def remover_aluno():
+    matricula = int(input('Qual a Matricula do aluno: '))
+    for aluno in alunos:
+        if aluno['matricula'] == matricula:
+            alunos.remove(aluno)
+            return f'O aluno {aluno["nome"]} foi removido'
+        
+    return 'Matrícula não encontrada.'
+
+def visualizar_alunos():
+    return alunos
+
+
+while True:
+    menu = int(input(''' Menu de acesso
+        1 - cadastrar aluno
+        2 - remover aluno
+        3 - visualizar alunos
+        0 - sair
+        '''))
+
+    match menu:
+        case 1:
+            print(adicionar_aluno())
+        case 2:
+            print(remover_aluno())
+        case 3:
+            print(visualizar_alunos())
+        case 0:
+            break
+        case _:
+            print('Digite uma opção valida')
+        
